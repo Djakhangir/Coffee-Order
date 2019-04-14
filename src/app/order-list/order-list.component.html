@@ -1,0 +1,25 @@
+<table class="centered responsive-table">
+    <thead>
+      <tr>
+          <th>Order #</th>
+          <th>Customer</th>
+          <th>Coffee List</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of coffeeOrders"> <!--iterate through the results in Array indicated in ts-->
+        <td>{{ order.payload.doc.data().orderNumber }}</td>
+        <td>{{ order.payload.doc.data().customerName   }}</td> <!--interating through to get list of coffees for each customer-->
+        <td><span *ngFor="let coffee of order.payload.doc.data().coffeeOrder">{{coffee}}</span></td> <!--other ways exist but here we iterate-->
+        <td [hidden]="order.payload.doc.data().completed" (click)="markCompleted(order)"><i class="material-icons">check</i></td> 
+        <!--when completed shows checked icon -->
+        <td (click)="deleteOrder(order)"><i class="material-icons">delete_forever</i></td>
+        <!-- when clicked delte the record-->
+      </tr>
+  </tbody>
+</table>
+
+
+<ul>
+  <li></li>
+</ul>

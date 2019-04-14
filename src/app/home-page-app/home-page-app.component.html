@@ -1,0 +1,29 @@
+<h5>Coffee Order</h5>
+<!--directive formGroup-to reference to the form object in OrdersService -->
+<form [formGroup]="this.ordersService.form" (ngSubmit)="onSubmit()"><!--ngSubmit is click method in form directive which takes the method of a button below-->
+<!--formControlName is the reference to the property names we used in formGroup in ordersService-->
+<input placeholder="Order Number"
+       formControlName="orderNumber"  
+       type="number"
+       class="input-field col s12" > 
+<input placeholder="Customer Name"
+       formControlName="customerName"
+       type="text"
+       class="input-field col s12" >
+
+      <!--loop through the array on click event and add new coffees into the order-->
+<button class="waves-effect waves-light btn col s4"
+        *ngFor="let coffee of coffees"
+        (click)="addCoffee(coffee)">{{ coffee }}</button>  
+
+      <!--Display the orders with ability to remove item from the list -->
+<ul class="collection">   
+  <li *ngFor="let coffee of coffeeOrder">
+    <span class="col s11"> {{ coffee }}  </span>
+    <a class="col s1 removeButton" (click)="removeCoffee(coffee)"><i class="">X</i></a>
+  </li>
+</ul>
+
+      <!--submit form button-->
+<button class="waves-effect waves-light btn col s12" (click)="onSubmit()">Submit<i class="material-icons right">send</i></button>
+</form>
